@@ -5,7 +5,7 @@ asyncio
 bard
 beautifulsoup4
 bs4
-bing_image_downloader 
+bing_image_downloader
 cloudscraper
 deepai
 dnspython
@@ -25,7 +25,7 @@ httpx
 img2pdf
 instaloader
 lexica-api
-motor 
+motor
 MukeshAPI
 numpy
 nekosbest
