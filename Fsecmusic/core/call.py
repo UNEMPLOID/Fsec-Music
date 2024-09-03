@@ -17,9 +17,9 @@ from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQuality
 from pytgcalls.types.stream import StreamAudioEnded
 
 import config
-from ANNIEMUSIC import LOGGER, YouTube, app
-from ANNIEMUSIC.misc import db
-from ANNIEMUSIC.utils.database import (
+from Fsecmusic import LOGGER, YouTube, app
+from Fsecmusic.misc import db
+from Fsecmusic.utils.database import (
     add_active_chat,
     add_active_video_chat,
     get_lang,
@@ -31,11 +31,11 @@ from ANNIEMUSIC.utils.database import (
     remove_active_video_chat,
     set_loop,
 )
-from ANNIEMUSIC.utils.exceptions import AssistantErr
-from ANNIEMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
-from ANNIEMUSIC.utils.inline.play import stream_markup
-from ANNIEMUSIC.utils.stream.autoclear import auto_clean
-from ANNIEMUSIC.utils.thumbnails import get_thumb
+from Fsecmusic.utils.exceptions import AssistantErr
+from Fsecmusic.utils.formatters import check_duration, seconds_to_min, speed_converter
+from Fsecmusic.utils.inline.play import stream_markup
+from Fsecmusic.utils.stream.autoclear import auto_clean
+from Fsecmusic.utils.thumbnails import get_thumb
 from strings import get_string
 
 autoend = {}
@@ -51,7 +51,7 @@ async def _clear_(chat_id):
 class Call(PyTgCalls):
     def __init__(self):
         self.userbot1 = Client(
-            name="ANNIE1",
+            name="FSEC1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
@@ -61,7 +61,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot2 = Client(
-            name="ANNIE2",
+            name="FSEC2",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING2),
@@ -71,7 +71,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot3 = Client(
-            name="ANNIE3",
+            name="FSEC3",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING3),
@@ -81,7 +81,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot4 = Client(
-            name="ANNIE4",
+            name="FSEC4",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
@@ -91,7 +91,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         self.userbot5 = Client(
-            name="ANNIE5",
+            name="FSEC5",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING5),
@@ -598,4 +598,4 @@ class Call(PyTgCalls):
             await self.change_stream(client, update.chat_id)
 
 
-JARVIS = Call()
+FALCON = Call()
