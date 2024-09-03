@@ -20,7 +20,7 @@ from pytgcalls.types import (
 from pytgcalls.types.stream import StreamAudioEnded
 
 import config
-from Fsecmusic import LOGGER, YouTube, app, YTB
+from Fsecmusic import LOGGER, YouTube, app
 from Fsecmusic.misc import db
 from Fsecmusic.utils.database import (
     add_active_chat,
