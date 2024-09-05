@@ -37,7 +37,7 @@ pause = {}
 playmode = {}
 playtype = {}
 skipmode = {}
-mute = {}
+
 
 async def get_assistant_number(chat_id: int) -> str:
     assistant = assistantdict.get(chat_id)
@@ -67,7 +67,7 @@ async def set_assistant_new(chat_id, number):
 
 
 async def set_assistant(chat_id):
-    from Fsecmusic.core.userbot import assistants
+    from AnonXMusic.core.userbot import assistants
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
@@ -81,7 +81,7 @@ async def set_assistant(chat_id):
 
 
 async def get_assistant(chat_id: int) -> str:
-    from Fsecmusic.core.userbot import assistants
+    from AnonXMusic.core.userbot import assistants
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
@@ -108,7 +108,7 @@ async def get_assistant(chat_id: int) -> str:
 
 
 async def set_calls_assistant(chat_id):
-    from Fsecmusic.core.userbot import assistants
+    from AnonXMusic.core.userbot import assistants
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
@@ -121,7 +121,7 @@ async def set_calls_assistant(chat_id):
 
 
 async def group_assistant(self, chat_id: int) -> int:
-    from Fsecmusic.core.userbot import assistants
+    from AnonXMusic.core.userbot import assistants
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
@@ -312,21 +312,6 @@ async def music_on(chat_id: int):
 async def music_off(chat_id: int):
     pause[chat_id] = False
 
-# Muted
-async def is_muted(chat_id: int) -> bool:
-    mode = mute.get(chat_id)
-    if not mode:
-        return False
-    return mode
-
-
-async def mute_on(chat_id: int):
-    mute[chat_id] = True
-
-
-async def mute_off(chat_id: int):
-    mute[chat_id] = False
-
 
 async def get_active_chats() -> list:
     return active
@@ -468,11 +453,13 @@ async def is_served_user(user_id: int) -> bool:
         return False
     return True
 
+
 async def get_served_users() -> list:
     users_list = []
     async for user in usersdb.find({"user_id": {"$gt": 0}}):
         users_list.append(user)
     return users_list
+
 
 async def add_served_user(user_id: int):
     is_served = await is_served_user(user_id)
@@ -480,8 +467,6 @@ async def add_served_user(user_id: int):
         return
     return await usersdb.insert_one({"user_id": user_id})
 
-async def remove_served_user(user_id: int):
-    return await usersdb.delete_one({"user_id": user_id})
 
 async def get_served_chats() -> list:
     chats_list = []
@@ -489,21 +474,19 @@ async def get_served_chats() -> list:
         chats_list.append(chat)
     return chats_list
 
+
 async def is_served_chat(chat_id: int) -> bool:
     chat = await chatsdb.find_one({"chat_id": chat_id})
     if not chat:
         return False
     return True
 
+
 async def add_served_chat(chat_id: int):
     is_served = await is_served_chat(chat_id)
     if is_served:
         return
     return await chatsdb.insert_one({"chat_id": chat_id})
-
-async def remove_served_chat(chat_id: int):
-    return await chatsdb.delete_one({"chat_id": chat_id})
-
 
 
 async def blacklisted_chats() -> list:
